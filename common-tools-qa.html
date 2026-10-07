@@ -1,0 +1,11 @@
+<!doctype html><html lang="zh-CN"><meta charset="UTF-8"><title>常用工具对照检查</title>
+<style>body{font:14px Arial;background:#eef1f5;margin:16px}header{margin-bottom:12px}select{padding:8px}main{display:flex;align-items:flex-start;gap:24px}iframe{border:0;width:375px;height:812px;background:white}img{width:375px;display:block}h2{font-size:14px}</style>
+<header><label>页面 <select id="page"></select></label> <label>设备宽度 <select id="width"><option>375</option><option>320</option><option>430</option><option>750</option></select></label></header>
+<main><section><h2>墨刀参考（375px）</h2><img id="reference" alt="墨刀页面参考"></section><section><h2>实现（按设计规范调整字号和点击区）</h2><iframe id="preview" title="常用工具预览"></iframe></section></main>
+<script>
+const paths=['支出（需求支出）/支出（需求支出）','支出（需求支出）/支出（商品支出）','支出（需求支出）/支出（转账支出）','支出（需求支出）/支出（平台服务费支出）','空间/空间','空间/付款流程','我的预约/我的预约','我的预约/预约详情','我的预约/核销二维码','积分-收入/积分-收入','积分-收入/主页收益','积分-收入/积分-支出','积分-收入/提现/提现','积分-收入/提现/积分提现/积分提现','积分-收入/提现/积分提现/到账','积分-收入/提现/提现记录','积分-收入/充值','礼物（我收到的）/礼物（我收到的）','礼物（我收到的）/礼物（赠送的）'];
+const page=document.querySelector('#page'),preview=document.querySelector('#preview'),reference=document.querySelector('#reference');
+paths.forEach((p,i)=>page.add(new Option(p,i)));
+function show(){preview.src='/screen/'+encodeURI('我的/常用工具/'+paths[page.value]);reference.src='/common-tools-reference-'+page.value+'.png'}
+page.onchange=show;document.querySelector('#width').onchange=e=>preview.style.width=e.target.value+'px';show();
+</script></html>
